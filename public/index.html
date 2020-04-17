@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"  crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   
+    <link rel="stylesheet" href="./style.css">
+   
+    <title>Task Manager</title>
+</head>
+<body>
+    <div id="heading">
+        <h1>Welcome ! To Task Manager and Notes Manager</h1>
+    </div>
+<div id="todo-list" class="overflow-auto" style="height: 450px; width:80%; margin-left:10%;"> 
+    <table class = "table table-dark"  id="task-table">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col" onclick="sortTable(2)">Status <b>&#8645;</b></th>
+      <th scope="col" onclick="sortTable(3)"> Due Date<b>&#8645;</b></th>
+      <th scope="col" onclick="sortTableByPriority()">Priority<b>&#8645;</b></th>
+      <th scope="col">Edit-Details</th>
+    </tr>
+    </thead>
+    <tbody id = "list">
+    </tbody>
+    </table>
+  
+</div>
+
+    <button class="button" style="position:absolute;bottom:5px;;margin-left:35%;padding:5px 3px;" onclick="div_show()"><span><b>Add</b></span></button>
+
+<div  id="body" >
+    <div id="abc">
+        
+        <div id="popupContact">
+        <form id="form" name="formss" onsubmit="addData()">
+        <img id="close" src="../Assets/cross.png" onclick ="div_hide()">
+        <b><h2><i><u>Add New Task</u></i></h2></b>
+        <hr>
+        <input id="name" name="name" placeholder="Title" type="text" required> 
+        <textarea id="email" name="description" placeholder="Description" type="text" required></textarea>
+        <br> 
+        <strong>Due Date</strong>
+        <br>
+        <input type="date" name="due-date" id="date">
+        <br> <br>
+        <label for="status" id="stat"><b>Status:</b></label>
+        <br>
+        <input name="status" type="radio" value="Complete" />Complete <br>   
+        <input name="status" type="radio" value="Incomplete" checked="checked"  /> Incomplete  
+        <br> <br>
+        <label for="Priorty" id="prior"><b>Priorty</b></label><br />
+        <input name="Priorty" type="radio" value="High" />High     
+        <input name="Priorty" type="radio" value="Medium" checked="checked"  /> Medium      
+        <input name="Priorty" type="radio" value="Low" /> Low
+        <br><br>
+        <input id = "submit" type = "submit" value = " Submit " >
+        </form>
+        </div>
+        </div>
+</div>
+
+
+<div  id="body" style="overflow:auto;">
+    <div id='editform'>
+        
+        <div id="popupContact">
+        <form id="form" name="formss">
+        <img id="close" src="../Assets/def.png" onclick ="div2_hide()">
+ 
+        <b><h2>Update Your Task</h2></b>
+        <hr>
+        <input type="hidden" id="todoid">
+        <input id="editname" name="name" placeholder="Title" type="text" readonly>
+        <textarea id="editemail" name="description" placeholder="Description" type="text" readonly></textarea> 
+        <br>
+        <label for="editstatus" id="stat"><b>Status</b></label>
+        <br>
+        <select id ="editstatus">
+            <option value="Complete">Complete</option>
+            <option value="Incomplete">Incomplete</option>
+        </select>
+        <br><br>
+        <strong>Due Date</strong>
+        <br><br>
+        <input type="date" name="due-date" id="editdate">
+        <br>  <br>  
+        <label for="editPriorty" id="prior"><b>Priorty</b></label>
+        <br>
+        <select id ="editpriority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+       
+        <br><br>
+        <button id="btnTaskAdd" class="btn btn-secondary" style="width: 100%;" onclick="editData()">Update</button>
+        </form>
+        </div>
+        </div>
+  </div>
+
+  
+     
+  <div  id="body" style="overflow:auto;">
+    <div id='noteform'>
+        
+        <div id="popupContact">
+        <form id="form" name="formss">
+        <img id="close" src="../Assets/def.png" onclick ="div3_hide()">
+ 
+        <b><h2>Notes</h2></b>
+        <hr>
+        <ul id = "notelist">
+
+        </ul>
+         <input type="hidden" id="todoid">
+        <textarea  placeholder="Enter your Notes here..." id = "notes"></textarea>
+        <button onclick="addnotes()" id = "notebutton" style="width: 100%;">Add </button>
+        <button style="width: 100%;" onclick="div3_hide()">Close </button>
+
+        </form>
+        </div>
+        </div>
+  </div>    
+
+
+ <script src="./script.js"></script>
+ <script src="./sort.js"></script>
+</body>
+</html>
+
+
+
+
